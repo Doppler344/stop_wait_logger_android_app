@@ -36,6 +36,9 @@ class FirstFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.buttonFirst.setOnClickListener {
+            findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
+        }
         val client = AsyncHttpClient()
         client["https://raw.githubusercontent.com/Doppler344/stop_wait_logger_android_app/master/README.md", object : AsyncHttpResponseHandler(){
             override fun onSuccess(
@@ -44,8 +47,10 @@ class FirstFragment : Fragment() {
                 responseBody: ByteArray
             ) {
                 binding.buttonFirst.setOnClickListener {
+                    findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
                     Snackbar.make(view, String(responseBody), Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show()}
+
             }
 
             override fun onFailure(
@@ -55,6 +60,7 @@ class FirstFragment : Fragment() {
                 error: Throwable
             ) {
                 binding.buttonFirst.setOnClickListener {
+                    findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
                     Snackbar.make(view, "Fail $statusCode", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show()}
             }
