@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
+import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.android_practice.databinding.FragmentFirstBinding
@@ -40,13 +42,14 @@ class FirstFragment : Fragment() {
             findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
         }
         val client = AsyncHttpClient()
-        client["https://raw.githubusercontent.com/Doppler344/stop_wait_logger_android_app/master/README.md", object : AsyncHttpResponseHandler(){
+        client["https://6401d995ab6b7399d0ae14fc.mockapi.io/admin_api/v1/log", object : AsyncHttpResponseHandler(){
             override fun onSuccess(
                 statusCode: Int,
                 headers: Array<out Header>?,
                 responseBody: ByteArray
             ) {
                 binding.buttonFirst.setOnClickListener {
+
                     findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
                     Snackbar.make(view, String(responseBody), Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show()}
